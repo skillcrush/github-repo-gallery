@@ -14,16 +14,19 @@
     <body>
         <main class="container">
             <h1>Welcome to the GitHub API Project!</h1>
-            <h3>Discover more about who you are following.</h3>
-            <h3>Click on any name to find out more. :)</h3>
-            <div class="button-input">
-                <button class="back hide">Back to followed users</button>
-                <input type="text" class="filter-repos hide" placeholder="Narrow your search">
-            </div>
-            <div class="following"></div>
-            <div class="discover">
-                <div class="repo-list-owner"></div>
-                <div class="repo-list"></div>
+            <section class="intro">
+                <div class="overview"></div>
+                <button class="hide get-repos">Get Repos</button>
+            </section>
+
+            <section class="repos">
+                <input type="text" class="filter-repos" placeholder="Narrow your search">
+                <ul class="repo-list"></ul>
+            </section>
+            <section class="repo-data hide">
+            </section>
+            <div class="button-container">
+                <button class="back hide">View Repos</button>
             </div>
         </main>
     </body>

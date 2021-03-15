@@ -1,89 +1,104 @@
-const followingContainer = document.querySelector(".following");
-const discoverContainer = document.querySelector(".discover");
-const repoContainer = document.querySelector(".repo-list");
-const repoListOwner = document.querySelector(".repo-list-owner");
+const overview = document.querySelector(".overview");
+const repoList = document.querySelector(".repo-list");
 const backButton = document.querySelector(".back");
+const allReposContainer = document.querySelector(".repos");
+const repoDataContainer = document.querySelector(".repo-data");
 const filterInput = document.querySelector(".filter-repos");
+const getReposButton = document.querySelector(".get-repos");
+const ghUsername = "redrambles";
 
-const gitIt = async function () {
-  const getFollowing = await fetch("https://api.github.com/users/redrambles/following");
-  const data = await getFollowing.json();
-  displayUsers(data);
+const gitUserInfo = async function () {
+  const userInfo = await fetch(`https://api.github.com/users/${ghUsername}`);
+  const data = await userInfo.json();
+  console.log(data);
+  displayUserInfo(data);
 };
 
-const displayUsers = function (usersArray) {
-  for (const user of usersArray) {
-    const userDiv = document.createElement("div");
-    userDiv.classList.add("following-user");
-    userDiv.innerHTML = `
-            <h2 class="repo-owner">${user.login}</h2>
-            <figure>
-                <img src="${user.avatar_url}" alt="User avatar" />
-            </figure>
-        `;
-    followingContainer.append(userDiv);
+gitUserInfo();
+
+const displayUserInfo = function (data) {
+  const div = document.createElement("div");
+  div.classList.add("user-info");
+  div.innerHTML = `
+    <figure>
+      <img alt="user avatar" src=${data.avatar_url} />
+    </figure>
+    <div>
+      <p><strong>Username:</strong> ${data.name}</p>
+      <p><strong>Bio:</strong> ${data.bio}</p>
+      <p><strong>Location:</strong> ${data.location}</p>
+      <p><strong>Number of public repos:</strong> ${data.public_repos}</p>
+    </div>
+  `;
+  overview.append(div);
+  getReposButton.classList.remove("hide");
+};
+
+const gitRepos = async function (ghUsername) {
+  getReposButton.classList.add("hide");
+  const fetchRepos = await fetch(`https://api.github.com/users/${ghUsername}/repos`);
+  const repoData = await fetchRepos.json();
+  displayRepos(repoData);
+};
+
+getReposButton.addEventListener("click", function () {
+  gitRepos(ghUsername);
+});
+
+const displayRepos = function (repos) {
+  // Grab info about the GitHub user to display on left hand side of list
+  for (const repo of repos) {
+    const repoItem = document.createElement("li");
+    repoItem.classList.add("repo");
+    repoItem.innerHTML = `
+      <h3>${repo.name}</h3>
+      <p>Main language: ${repo.language}</p>
+      `;
+    repoList.append(repoItem);
+    // console.log(repo);
   }
 };
 
-gitIt();
-
-// Click on a user to know more
-followingContainer.addEventListener("click", function (e) {
-  if (e.target.matches("h2.repo-owner")) {
-    const username = e.target.innerText;
-    fetchUserRepos(username);
-    followingContainer.classList.add("hide");
-    discoverContainer.classList.remove("hide");
-    filterInput.classList.remove("hide");
+// Click on a repo to see more details
+repoList.addEventListener("click", function (e) {
+  if (e.target.matches("h3")) {
+    const reponame = e.target.innerText;
+    getRepoInfo(reponame);
   }
 });
 
-const fetchUserRepos = async function (username) {
-  const fetchRepos = await fetch(`https://api.github.com/users/${username}/repos`);
-  const repos = await fetchRepos.json();
-  displayRepos(repos);
-  backButton.classList.remove("hide");
+const getRepoInfo = async function (reponame) {
+  const fetchInfo = await fetch(`https://api.github.com/repos/${ghUsername}/${reponame}`);
+  const repoData = await fetchInfo.json();
+  displayRepoInfo(repoData);
 };
 
-const displayRepos = function (repos) {
-  repoContainer.innerHTML = "";
-  repoListOwner.innerHTML = "";
+const formatDate = function (raw_date) {
+  const timeStamp = Date.parse(raw_date);
+  const date = new Date(timeStamp).toDateString();
+  return date;
+};
 
-  // Grab info about the GitHub user to display on left hand side of list
-  const userInfo = document.createElement("div");
-  const username = repos[0].owner.login;
-  const avatar = repos[0].owner.avatar_url;
-  userInfo.innerHTML = `
-    <div class="user-info">
-    <h3>${username}'s repos</h3>
-    <figure>
-        <img src=${avatar} alt="user avatar"/>
-    </figure>
-    </div>
+const displayRepoInfo = function (repoData) {
+  backButton.classList.remove("hide");
+  repoDataContainer.innerHTML = "";
+  repoDataContainer.classList.remove("hide");
+  allReposContainer.classList.add("hide");
+  const div = document.createElement("div");
+  div.innerHTML = `
+    <h3>Name: ${repoData.name}</h3>
+    <p>Default branch: ${repoData.default_branch}</p>
+    <p>Description: ${repoData.description}</p>
+    <p>Last Updated: ${formatDate(repoData.pushed_at)}</p>
+    <a class="visit" href="${repoData.html_url}" target="_blank" rel="noreferrer noopener">Visit Repo on GitHub :)</a>
   `;
-  repoListOwner.append(userInfo);
-
-  for (const repo of repos) {
-    const repoItem = document.createElement("div");
-    repoItem.classList.add("repo");
-    repoItem.innerHTML = `
-        <h3>${repo.name}</h3>
-        <div class="extra-info">
-            <p>Main language: ${repo.language}</p>
-            <p class="description">Description: ${repo.description}</p>
-            <a class="visit" href=${repo.html_url} target="_blank">Visit Repo </a>
-        </div>
-    `;
-    repoContainer.append(repoItem);
-  }
+  repoDataContainer.append(div);
 };
 
 backButton.addEventListener("click", function () {
-  followingContainer.classList.remove("hide");
-  discoverContainer.classList.add("hide");
+  allReposContainer.classList.remove("hide");
+  repoDataContainer.classList.add("hide");
   backButton.classList.add("hide");
-  filterInput.classList.add("hide");
-  filterInput.value = "";
 });
 
 // Dynamic search
