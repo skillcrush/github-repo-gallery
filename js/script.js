@@ -4,7 +4,6 @@ const backButton = document.querySelector(".back");
 const allReposContainer = document.querySelector(".repos");
 const repoDataContainer = document.querySelector(".repo-data");
 const filterInput = document.querySelector(".filter-repos");
-const getReposButton = document.querySelector(".get-repos");
 const ghUsername = "redrambles";
 
 const gitUserInfo = async function () {
@@ -31,19 +30,14 @@ const displayUserInfo = function (data) {
     </div>
   `;
   overview.append(div);
-  getReposButton.classList.remove("hide");
+  gitRepos(ghUsername);
 };
 
 const gitRepos = async function (ghUsername) {
-  getReposButton.classList.add("hide");
-  const fetchRepos = await fetch(`https://api.github.com/users/${ghUsername}/repos`);
+  const fetchRepos = await fetch(`https://api.github.com/users/${ghUsername}/repos?sort=updated&per_page=100`);
   const repoData = await fetchRepos.json();
   displayRepos(repoData);
 };
-
-getReposButton.addEventListener("click", function () {
-  gitRepos(ghUsername);
-});
 
 const displayRepos = function (repos) {
   // Grab info about the GitHub user to display on left hand side of list
