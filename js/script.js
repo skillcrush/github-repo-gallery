@@ -47,6 +47,7 @@ getReposButton.addEventListener("click", function () {
 
 const displayRepos = function (repos) {
   // Grab info about the GitHub user to display on left hand side of list
+  filterInput.classList.remove("hide");
   for (const repo of repos) {
     const repoItem = document.createElement("li");
     repoItem.classList.add("repo");
@@ -73,8 +74,8 @@ const getRepoInfo = async function (reponame) {
   displayRepoInfo(repoData);
 };
 
-const formatDate = function (raw_date) {
-  const timeStamp = Date.parse(raw_date);
+const formatDate = function (rawDate) {
+  const timeStamp = Date.parse(rawDate);
   const date = new Date(timeStamp).toDateString();
   return date;
 };
