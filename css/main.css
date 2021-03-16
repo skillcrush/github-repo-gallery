@@ -14,6 +14,7 @@ body {
 }
 
 .hide {
+    /* '!important' is to make sure that when we add the class using JS, it takes precendence */
     display: none !important;
 }
 
@@ -42,7 +43,12 @@ h1 {
 h3 {
     width: 100%;
     text-align: center;
-    color: rgb(131, 63, 63);
+    color: #833f3f;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
 }
 
 .container {
@@ -55,48 +61,36 @@ h3 {
     max-width: 1200px;
 }
 
-.following {
+.intro,
+.repos {
     width: 100%;
-    margin-top: 3em;
+}
+
+.user-info {
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-wrap: wrap;
-}
-
-.following-user {
-    margin-bottom: 2em;
-    display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;
-    text-align: center;
+}
+
+.user-info figure {
     width: 20%;
-    min-width: 300px;
-}
-
-.following-user h2 {
-    padding: 0.5em 1em;
-}
-
-.following-user h2:hover {
-    cursor: pointer;
-    transform: scale(0.98);
-    background-color: #e6d3d3;
-}
-
-.following-user figure {
-    width: 60%;
-}
-
-.following-user figure img {
-    border-radius: 100%;
-    border: 5px solid #8a0e12;
-
 }
 
 .user-info img {
     border-radius: 100%;
+}
+
+.user-info div {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 45%;
+    padding-left: 5%;
+}
+
+.user-info div p {
+    width: 100%;
+    margin: 0.5em 0;
 }
 
 .filter-repos {
@@ -105,17 +99,8 @@ h3 {
     padding: 0.5em;
 }
 
-.button-input {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 1em;
-}
-
-.discover {
-    width: 100%;
+.repos {
+    margin-top: 3em;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -126,86 +111,62 @@ h3 {
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
-    justify-content: space-between;
 }
 
-.repo-list div {
-    display: flex;
-    flex-wrap: wrap;
-
-}
-
-.repo-list-owner {
-    max-width: 350px;
-}
-
-.repo-list p {
-    margin: 0.5em 0;
-}
-
-.repo-list .repo {
-    width: 100%;
-    padding: 1em;
+.repo-list li {
+    width: 30%;
     margin: 1em;
-    border: 1px solid maroon;
-}
-
-.extra-info p {
-    width: 100%;
+    border: 1px solid #833f3f;
+    padding: 0.5em;
 }
 
 .repo-list h3 {
     text-align: left;
-    padding: 1em 0;
+    padding: 1em 0.5em;
     margin: 0;
 }
 
 
-.repo-list .visit {
+.repo-list h3:hover {
+    background-color: #cdb9a9;
+    cursor: pointer;
+}
+
+.repo-list p {
+    padding: 0em 0.5em;
+    margin: 0.5em 0;
+}
+
+.repo-data {
+    width: 100%;
+    margin-top: 3em;
+}
+
+.repo-data h3 {
+    text-align: left;
+}
+
+.repo-data .visit {
     text-decoration: none;
+    max-width: 200px;
     color: #fff;
-    padding: 1em;
-    margin-top: 0.5em;
+    padding: 0.75em;
+    margin-top: 2em;
     cursor: pointer;
     display: block;
     background-color: #8a0e12;
     border: 1px solid #8a0e12;
 }
 
-.repo-list .visit:hover {
+.repo-data .visit:hover {
     background-color: #a03038;
     border: 1px solid #ccc;
 }
 
-.user-info figure {
-    display: none;
+.button-container {
+    width: 100%;
 }
 
-.hide .extra-info {
-    display: none;
-}
-
-@media (min-width: 800px) {
-
-    .user-info figure {
-        display: block;
-    }
-
-    .discover {
-        justify-content: space-between;
-    }
-
-    .repo-list-owner {
-        width: 30%;
-    }
-
-    .repo-list {
-        width: 70%;
-    }
-}
-
-@media (min-width: 1050px) {
-    .repo-list .repo {
-        width: calc(50% - 2em);
-    }
+.back {
+    max-width: 200px;
 }

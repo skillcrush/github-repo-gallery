@@ -14,12 +14,19 @@
     <body>
         <main class="container">
             <h1>Welcome to the GitHub API Project!</h1>
-            <div class="intro"></div>
-            <button class="hide get-repos">Get Repos</button>
+            <section class="intro">
+                <div class="overview"></div>
+                <button class="hide get-repos">Get Repos</button>
+            </section>
 
-            <div class="repos">
+            <section class="repos">
                 <input type="text" class="filter-repos" placeholder="Narrow your search">
                 <ul class="repo-list"></ul>
+            </section>
+            <section class="repo-data hide">
+            </section>
+            <div class="button-container">
+                <button class="back hide">View Repos</button>
             </div>
         </main>
     </body>
