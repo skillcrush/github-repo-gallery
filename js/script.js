@@ -4,13 +4,11 @@ const backButton = document.querySelector(".back");
 const allReposContainer = document.querySelector(".repos");
 const repoDataContainer = document.querySelector(".repo-data");
 const filterInput = document.querySelector(".filter-repos");
-const getReposButton = document.querySelector(".get-repos");
 const ghUsername = "redrambles";
 
 const gitUserInfo = async function () {
   const userInfo = await fetch(`https://api.github.com/users/${ghUsername}`);
   const data = await userInfo.json();
-  console.log(data);
   displayUserInfo(data);
 };
 
@@ -31,19 +29,14 @@ const displayUserInfo = function (data) {
     </div>
   `;
   overview.append(div);
-  getReposButton.classList.remove("hide");
+  gitRepos(ghUsername);
 };
 
 const gitRepos = async function (ghUsername) {
-  getReposButton.classList.add("hide");
-  const fetchRepos = await fetch(`https://api.github.com/users/${ghUsername}/repos`);
+  const fetchRepos = await fetch(`https://api.github.com/users/${ghUsername}/repos?sort=updated&per_page=100`);
   const repoData = await fetchRepos.json();
   displayRepos(repoData);
 };
-
-getReposButton.addEventListener("click", function () {
-  gitRepos(ghUsername);
-});
 
 const displayRepos = function (repos) {
   // Grab info about the GitHub user to display on left hand side of list
@@ -56,7 +49,6 @@ const displayRepos = function (repos) {
       <p>Main language: ${repo.language}</p>
       `;
     repoList.append(repoItem);
-    // console.log(repo);
   }
 };
 
@@ -71,16 +63,21 @@ repoList.addEventListener("click", function (e) {
 const getRepoInfo = async function (reponame) {
   const fetchInfo = await fetch(`https://api.github.com/repos/${ghUsername}/${reponame}`);
   const repoData = await fetchInfo.json();
-  displayRepoInfo(repoData);
+
+  // Grab languages
+  const fetchLanguages = await fetch(repoData.languages_url);
+  const languageData = await fetchLanguages.json();
+
+  // Make a list of languages
+  const languages = [];
+  for (const language in languageData) {
+    languages.push(language);
+  }
+
+  displayRepoInfo(repoData, languages);
 };
 
-const formatDate = function (rawDate) {
-  const timeStamp = Date.parse(rawDate);
-  const date = new Date(timeStamp).toDateString();
-  return date;
-};
-
-const displayRepoInfo = function (repoData) {
+const displayRepoInfo = function (repoData, languages) {
   backButton.classList.remove("hide");
   repoDataContainer.innerHTML = "";
   repoDataContainer.classList.remove("hide");
@@ -88,9 +85,9 @@ const displayRepoInfo = function (repoData) {
   const div = document.createElement("div");
   div.innerHTML = `
     <h3>Name: ${repoData.name}</h3>
-    <p>Default branch: ${repoData.default_branch}</p>
     <p>Description: ${repoData.description}</p>
-    <p>Last Updated: ${formatDate(repoData.pushed_at)}</p>
+    <p>Default Branch: ${repoData.default_branch}</p>
+    <p>Languages: ${languages.join(", ")}</p>
     <a class="visit" href="${repoData.html_url}" target="_blank" rel="noreferrer noopener">Visit Repo on GitHub :)</a>
   `;
   repoDataContainer.append(div);
@@ -115,7 +112,3 @@ filterInput.addEventListener("input", function (e) {
     }
   }
 });
-
-// !!! Unauthenticated clients can make 60 requests per hour !!! To get more requests per hour, we'll need to authenticate. In fact, doing anything interesting with the GitHub API requires authentication. Learn more about how to do that here
-
-// Creating a token is very simple - See my new token as example
