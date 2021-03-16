@@ -4,7 +4,6 @@ const backButton = document.querySelector(".back");
 const allReposContainer = document.querySelector(".repos");
 const repoDataContainer = document.querySelector(".repo-data");
 const filterInput = document.querySelector(".filter-repos");
-const getReposButton = document.querySelector(".get-repos");
 const ghUsername = "redrambles";
 
 const gitUserInfo = async function () {
@@ -31,22 +30,18 @@ const displayUserInfo = function (data) {
     </div>
   `;
   overview.append(div);
-  getReposButton.classList.remove("hide");
+  gitRepos(ghUsername);
 };
 
 const gitRepos = async function (ghUsername) {
-  getReposButton.classList.add("hide");
-  const fetchRepos = await fetch(`https://api.github.com/users/${ghUsername}/repos`);
+  const fetchRepos = await fetch(`https://api.github.com/users/${ghUsername}/repos?sort=updated&per_page=100`);
   const repoData = await fetchRepos.json();
   displayRepos(repoData);
 };
 
-getReposButton.addEventListener("click", function () {
-  gitRepos(ghUsername);
-});
-
 const displayRepos = function (repos) {
   // Grab info about the GitHub user to display on left hand side of list
+  filterInput.classList.remove("hide");
   for (const repo of repos) {
     const repoItem = document.createElement("li");
     repoItem.classList.add("repo");
@@ -73,12 +68,6 @@ const getRepoInfo = async function (reponame) {
   displayRepoInfo(repoData);
 };
 
-const formatDate = function (raw_date) {
-  const timeStamp = Date.parse(raw_date);
-  const date = new Date(timeStamp).toDateString();
-  return date;
-};
-
 const displayRepoInfo = function (repoData) {
   backButton.classList.remove("hide");
   repoDataContainer.innerHTML = "";
@@ -89,7 +78,6 @@ const displayRepoInfo = function (repoData) {
     <h3>Name: ${repoData.name}</h3>
     <p>Default branch: ${repoData.default_branch}</p>
     <p>Description: ${repoData.description}</p>
-    <p>Last Updated: ${formatDate(repoData.pushed_at)}</p>
     <a class="visit" href="${repoData.html_url}" target="_blank" rel="noreferrer noopener">Visit Repo on GitHub :)</a>
   `;
   repoDataContainer.append(div);
