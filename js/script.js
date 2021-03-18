@@ -88,7 +88,7 @@ const displayRepoInfo = function (repoData, languages) {
     <p>Description: ${repoData.description}</p>
     <p>Default Branch: ${repoData.default_branch}</p>
     <p>Languages: ${languages.join(", ")}</p>
-    <a class="visit" href="${repoData.html_url}" target="_blank" rel="noreferrer noopener">Visit Repo on GitHub :)</a>
+    <a class="visit" href="${repoData.html_url}" target="_blank" rel="noreferrer noopener">Visit Repo on GitHub!</a>
   `;
   repoDataContainer.append(div);
 };
