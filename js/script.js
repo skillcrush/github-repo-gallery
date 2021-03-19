@@ -1,11 +1,13 @@
 const overview = document.querySelector(".overview");
-const ghUsername = "redrambles";
+const username = "redrambles";
 const repoList = document.querySelector(".repo-list");
 const allReposContainer = document.querySelector(".repos");
 const repoDataContainer = document.querySelector(".repo-data");
+const viewReposButton = document.querySelector(".view-repos");
+const filterInput = document.querySelector(".filter-repos");
 
 const gitUserInfo = async function () {
-  const userInfo = await fetch(`https://api.github.com/users/${ghUsername}`);
+  const userInfo = await fetch(`https://api.github.com/users/${username}`);
   const data = await userInfo.json();
   displayUserInfo(data);
 };
@@ -27,17 +29,17 @@ const displayUserInfo = function (data) {
     </div>
   `;
   overview.append(div);
-  gitRepos(ghUsername);
+  gitRepos(username);
 };
 
-const gitRepos = async function (ghUsername) {
-  const fetchRepos = await fetch(`https://api.github.com/users/${ghUsername}/repos?sort=updated&per_page=100`);
+const gitRepos = async function (username) {
+  const fetchRepos = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=100`);
   const repoData = await fetchRepos.json();
   displayRepos(repoData);
 };
 
 const displayRepos = function (repos) {
-  // Grab info about the GitHub user to display on left hand side of list
+  filterInput.classList.remove("hide");
   for (const repo of repos) {
     const repoItem = document.createElement("li");
     repoItem.classList.add("repo");
@@ -51,13 +53,13 @@ const displayRepos = function (repos) {
 
 repoList.addEventListener("click", function (e) {
   if (e.target.matches("h3")) {
-    const reponame = e.target.innerText;
-    getRepoInfo(reponame);
+    const repoName = e.target.innerText;
+    getRepoInfo(repoName);
   }
 });
 
-const getRepoInfo = async function (reponame) {
-  const fetchInfo = await fetch(`https://api.github.com/repos/${ghUsername}/${reponame}`);
+const getRepoInfo = async function (repoName) {
+  const fetchInfo = await fetch(`https://api.github.com/repos/${username}/${repoName}`);
   const repoData = await fetchInfo.json();
 
   // Grab languages
@@ -74,6 +76,7 @@ const getRepoInfo = async function (reponame) {
 };
 
 const displayRepoInfo = function (repoData, languages) {
+  viewReposButton.classList.remove("hide");
   repoDataContainer.innerHTML = "";
   repoDataContainer.classList.remove("hide");
   allReposContainer.classList.add("hide");
@@ -87,3 +90,23 @@ const displayRepoInfo = function (repoData, languages) {
   `;
   repoDataContainer.append(div);
 };
+
+viewReposButton.addEventListener("click", function () {
+  allReposContainer.classList.remove("hide");
+  repoDataContainer.classList.add("hide");
+  viewReposButton.classList.add("hide");
+});
+
+// // Dynamic search
+filterInput.addEventListener("input", function (e) {
+  const searchText = e.target.value;
+  const repos = document.querySelectorAll(".repo");
+
+  for (const repo of repos) {
+    if (!repo.innerText.toLowerCase().includes(searchText.toLowerCase())) {
+      repo.classList.add("hide");
+    } else {
+      repo.classList.remove("hide");
+    }
+  }
+});
