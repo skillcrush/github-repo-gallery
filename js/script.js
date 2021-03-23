@@ -27,10 +27,10 @@ const displayUserInfo = function (data) {
     </div>
   `;
   overview.append(div);
-  gitRepos(username);
+  gitRepos();
 };
 
-const gitRepos = async function (username) {
+const gitRepos = async function () {
   const fetchRepos = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=100`);
   const repoData = await fetchRepos.json();
   displayRepos(repoData);
@@ -57,7 +57,7 @@ repoList.addEventListener("click", function (e) {
 const getRepoInfo = async function (repoName) {
   const fetchInfo = await fetch(`https://api.github.com/repos/${username}/${repoName}`);
   const repoData = await fetchInfo.json();
-
+  console.log(repoData);
   // Grab languages
   const fetchLanguages = await fetch(repoData.languages_url);
   const languageData = await fetchLanguages.json();
@@ -81,7 +81,7 @@ const displayRepoInfo = function (repoData, languages) {
     <p>Description: ${repoData.description}</p>
     <p>Default Branch: ${repoData.default_branch}</p>
     <p>Languages: ${languages.join(", ")}</p>
-    <a class="visit" href="${repoData.html_url}" target="_blank" rel="noreferrer noopener">Visit Repo on GitHub!</a>
+    <a class="visit" href="${repoData.html_url}" target="_blank" rel="noreferrer noopener">View Repo on GitHub!</a>
   `;
   repoDataContainer.append(div);
 };
