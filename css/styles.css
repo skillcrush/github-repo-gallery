@@ -7,8 +7,8 @@ body {
     align-items: center;
     justify-content: center;
     margin: 0;
-    font-family: "B612", sans-serif;
-    background-color: #e6e3ca;
+    font-family: "Open Sans", sans-serif;
+    background-color: #fbf9de;
     color: #333;
     font-size: 16px;
 }
@@ -18,12 +18,16 @@ body {
     display: none !important;
 }
 
-.back {
+.view-repos {
     margin-top: 1.5em;
     padding: 0.5em 1em;
     cursor: pointer;
     align-self: center;
     width: 300px;
+}
+
+.fa-github-alt {
+    color: #f86d58;
 }
 
 img {
@@ -33,17 +37,50 @@ img {
 
 h1 {
     width: 100%;
-    padding: 1em 0;
+    padding: 1em 0.5em;
     margin: 0;
-    font-size: 3em;
+    font-size: 3.5em;
     text-align: center;
-    font-family: "Archivo", sans-serif;
+    font-family: "Oswald", sans-serif;
+    background-color: #483978;
+    color: #fff;
+    text-transform: uppercase;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.badge {
+    height: 80px;
+    width: 50px;
+    background-color: grey;
+    z-index: 98;
+    margin-bottom: -35px;
+    margin-top: 10px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.circle {
+    width: 20px;
+    height: 20px;
+    background-color: #483978;
+    border-radius: 100%;
+    z-index: 99;
+    align-self: center;
+    margin-top: auto;
+    margin-bottom: 8px;
+}
+
+.github-img {
+    width: 45px;
+    margin-right: 8px;
 }
 
 h3 {
     width: 100%;
     text-align: center;
-    color: #833f3f;
+    color: #f86d58;
 }
 
 ul {
@@ -70,6 +107,10 @@ ul {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    background-color: #483978;
+    color: white;
+    font-size: 18px;
+    padding-bottom: 2em;
 }
 
 .user-info figure {
@@ -92,20 +133,34 @@ ul {
 
 .user-info div p {
     width: 100%;
-    margin: 0.5em 0;
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px solid #9b8dc9;
+    padding-bottom: 19px;
 }
 
 .filter-repos {
     width: 300px;
+    height: 50px;
     margin-top: 1em;
-    padding: 0.5em;
+    padding: 1em;
+    margin-bottom: 1em;
+    border: 2px solid #483978;
+}
+
+section.repo-data {
+    background-color: #fff;
+    padding: 2em;
+    padding-bottom: 1em;
 }
 
 .repos {
-    margin-top: 3em;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    background-color: #fff;
+    margin-top: 0;
+    padding: 2em;
 }
 
 .repo-list {
@@ -119,19 +174,18 @@ ul {
 .repo-list li {
     width: 90%;
     margin: 1em 0;
-    border: 1px solid #833f3f;
+    border: 1px solid #f86d58;
     padding: 0.5em;
 }
 
 .repo-list h3 {
     text-align: left;
-    padding: 1em 0.5em;
     margin: 0;
+    padding: 10px;
 }
 
-
 .repo-list h3:hover {
-    background-color: #cdb9a9;
+    background-color: #eee9ff;
     cursor: pointer;
 }
 
@@ -142,7 +196,6 @@ ul {
 
 .repo-data {
     width: 100%;
-    margin-top: 3em;
 }
 
 .repo-data h3 {
@@ -157,25 +210,28 @@ ul {
     margin-top: 2em;
     cursor: pointer;
     display: block;
-    background-color: #8a0e12;
-    border: 1px solid #8a0e12;
+    background-color: #483978;
+    border: 1px solid #483978;
 }
 
 .repo-data .visit:hover {
-    background-color: #a03038;
+    background-color: #2f2550;
     border: 1px solid #ccc;
 }
 
 .button-container {
     width: 100%;
+    background-color: #fff;
+    padding-left: 2em;
+    padding-bottom: 2em;
 }
 
-.back {
+.view-repos {
     max-width: 200px;
+    margin-top: 0;
 }
 
 @media (min-width: 700px) {
-
     .user-info div {
         width: 45%;
         text-align: left;
@@ -187,6 +243,12 @@ ul {
 
     .repo-list li {
         width: 48%;
+    }
+}
+
+@media (max-width: 700px) {
+    .user-info div p {
+        margin: 10px;
     }
 }
 
