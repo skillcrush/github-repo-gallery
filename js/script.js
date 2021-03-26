@@ -25,10 +25,10 @@ const displayUserInfo = function (data) {
     </div>
   `;
   overview.append(div);
-  gitRepos(username);
+  gitRepos();
 };
 
-const gitRepos = async function (username) {
+const gitRepos = async function () {
   const fetchRepos = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=100`);
   const repoData = await fetchRepos.json();
   displayRepos(repoData);
