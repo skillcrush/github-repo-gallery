@@ -2,7 +2,7 @@ const overview = document.querySelector(".overview");
 const username = "redrambles";
 const repoList = document.querySelector(".repo-list");
 const allReposContainer = document.querySelector(".repos");
-const repoDataContainer = document.querySelector(".repo-data");
+const repoData = document.querySelector(".repo-data");
 const viewReposButton = document.querySelector(".view-repos");
 const filterInput = document.querySelector(".filter-repos");
 
@@ -57,10 +57,10 @@ repoList.addEventListener("click", function (e) {
 
 const getRepoInfo = async function (repoName) {
   const fetchInfo = await fetch(`https://api.github.com/repos/${username}/${repoName}`);
-  const repoData = await fetchInfo.json();
+  const repoInfo = await fetchInfo.json();
 
   // Grab languages
-  const fetchLanguages = await fetch(repoData.languages_url);
+  const fetchLanguages = await fetch(repoInfo.languages_url);
   const languageData = await fetchLanguages.json();
 
   // Make a list of languages
@@ -69,28 +69,28 @@ const getRepoInfo = async function (repoName) {
     languages.push(language);
   }
 
-  displayRepoInfo(repoData, languages);
+  displayRepoInfo(repoInfo, languages);
 };
 
-const displayRepoInfo = function (repoData, languages) {
+const displayRepoInfo = function (repoInfo, languages) {
   viewReposButton.classList.remove("hide");
-  repoDataContainer.innerHTML = "";
-  repoDataContainer.classList.remove("hide");
+  repoData.innerHTML = "";
+  repoData.classList.remove("hide");
   allReposContainer.classList.add("hide");
   const div = document.createElement("div");
   div.innerHTML = `
-    <h3>Name: ${repoData.name}</h3>
-    <p>Description: ${repoData.description}</p>
-    <p>Default Branch: ${repoData.default_branch}</p>
+    <h3>Name: ${repoInfo.name}</h3>
+    <p>Description: ${repoInfo.description}</p>
+    <p>Default Branch: ${repoInfo.default_branch}</p>
     <p>Languages: ${languages.join(", ")}</p>
-    <a class="visit" href="${repoData.html_url}" target="_blank" rel="noreferrer noopener">View Repo on GitHub!</a>
+    <a class="visit" href="${repoInfo.html_url}" target="_blank" rel="noreferrer noopener">View Repo on GitHub!</a>
   `;
-  repoDataContainer.append(div);
+  repoData.append(div);
 };
 
 viewReposButton.addEventListener("click", function () {
   allReposContainer.classList.remove("hide");
-  repoDataContainer.classList.add("hide");
+  repoData.classList.add("hide");
   viewReposButton.classList.add("hide");
 });
 
