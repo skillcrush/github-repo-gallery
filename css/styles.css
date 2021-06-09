@@ -8,7 +8,7 @@ body {
     justify-content: center;
     margin: 0;
     font-family: "Open Sans", sans-serif;
-    background-color: #caf1ee;
+    background-color: #ebfaf8;
     color: #333;
     font-size: 16px;
 }
@@ -135,7 +135,7 @@ ul {
     width: 100%;
     margin: 0;
     padding: 0;
-    border-bottom: 1px solid #caf1ee;
+    border-bottom: 1px solid #ebfaf8;
     padding-bottom: 19px;
 }
 

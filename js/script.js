@@ -1,6 +1,9 @@
 const username = "caitlinpmarshall";
 //profile information
 const overview = document.querySelector(".overview");
+//area to display repos
+const repoListElement = document.querySelector(".repo-list");
+
 
 //async to fetch GitHub API data
 const fetchUser = async function(){
@@ -35,7 +38,24 @@ const showUserData = function(userData){
         </div> 
     `;
     overview.append(userInfo);
-
 };
 
+const fetchRepos = async function (){
+    const response = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=100`);
+    const repoList = await response.json();
+    //console.log(repoList);
+    displayRepoInfo(repoList);
+    
+};
 
+const displayRepoInfo = function (repoList){ //not sure about this parameter
+    for (const repo of repoList) { // or this const
+        const li = document.createElement("li");
+        li.classList.add("repo");
+        const repoName = repo.name;
+        li.innerHTML = `<h3>${repoName}</h3>`;
+        repoListElement.append(li);
+    }
+};
+
+fetchRepos();
