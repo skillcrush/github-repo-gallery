@@ -3,6 +3,10 @@ const username = "caitlinpmarshall";
 const overview = document.querySelector(".overview");
 //area to display repos
 const repoListElement = document.querySelector(".repo-list");
+//section for all repos
+const allReposElement = document.querySelector(".repos");
+//section for individual repo data; initally hidden
+const repoData = document.querySelector(".repo-data");
 
 
 //async to fetch GitHub API data
@@ -42,14 +46,14 @@ const showUserData = function(userData){
 
 const fetchRepos = async function (){
     const response = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=100`);
-    const repoList = await response.json();
-    //console.log(repoList);
-    displayRepoInfo(repoList);
+    const repos = await response.json();
+    //console.log(repos);
+    displayRepoInfo(repos);
     
 };
 
-const displayRepoInfo = function (repoList){ //not sure about this parameter
-    for (const repo of repoList) { // or this const
+const displayRepoInfo = function (repos){ //not sure about this parameter
+    for (const repo of repos) { // or this const
         const li = document.createElement("li");
         li.classList.add("repo");
         const repoName = repo.name;
@@ -59,3 +63,11 @@ const displayRepoInfo = function (repoList){ //not sure about this parameter
 };
 
 fetchRepos();
+
+const repoList = repoListElement.addEventListener("click", function(e){ //can you name an event listener?
+    if (e.target.matches("h3")) {
+        const repoName = e.target.innerText; //shouldn't reuse variable names
+        console.log(repoName);
+    }
+
+});
