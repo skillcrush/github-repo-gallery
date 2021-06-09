@@ -6,7 +6,7 @@ const repoListElement = document.querySelector(".repo-list");
 //section for all repos
 const allReposElement = document.querySelector(".repos");
 //section for individual repo data; initally hidden
-const repoData = document.querySelector(".repo-data");
+const repoDataElement = document.querySelector(".repo-data");
 
 
 //async to fetch GitHub API data
@@ -56,8 +56,8 @@ const displayRepoInfo = function (repos){ //not sure about this parameter
     for (const repo of repos) { // or this const
         const li = document.createElement("li");
         li.classList.add("repo");
-        const repoName = repo.name;
-        li.innerHTML = `<h3>${repoName}</h3>`;
+        const repoTitle = repo.name; //was repoName, but changed to distinguish from repoName required below
+        li.innerHTML = `<h3>${repoTitle}</h3>`; 
         repoListElement.append(li);
     }
 };
@@ -67,7 +67,19 @@ fetchRepos();
 const repoList = repoListElement.addEventListener("click", function(e){ //can you name an event listener?
     if (e.target.matches("h3")) {
         const repoName = e.target.innerText; //shouldn't reuse variable names
-        console.log(repoName);
+        fetchRepoData(repoName);
     }
 
 });
+
+const fetchRepoData = async function (repoName){ //why can we call for this? it's only defined inside that if statement.  So...probably this function will also get called inside the if statement?
+    const response = await fetch(`https://api.github.com/repos/${username}/${repoName}`);
+    const repoData = await response.json();
+    console.log(repoData);
+    //fetch the repo's languages
+    //const languages = repoName.languages_url
+    const fetchLanguages = await fetch(`https://api.github.com/repos/${username}/${repoName}/languages_url`);
+    const languageData = await fetchLanguages.json();
+    console.log(languageData);
+
+};
