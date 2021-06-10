@@ -13,7 +13,7 @@ const repoDataElement = document.querySelector(".repo-data");
 const fetchUser = async function(){
     const response = await fetch(`https://api.github.com/users/${username}`);
     const userData = await response.json();
-    console.log(userData);
+    //console.log(userData);
     showUserData(userData);
 };
 
@@ -74,12 +74,15 @@ const repoList = repoListElement.addEventListener("click", function(e){ //can yo
 
 const fetchRepoData = async function (repoName){ //why can we call for this? it's only defined inside that if statement.  So...probably this function will also get called inside the if statement?
     const response = await fetch(`https://api.github.com/repos/${username}/${repoName}`);
-    const repoData = await response.json();
-    console.log(repoData);
-    //fetch the repo's languages
-    //const languages = repoName.languages_url
-    const fetchLanguages = await fetch(`https://api.github.com/repos/${username}/${repoName}/languages_url`);
+    const repoInfo = await response.json();
+    //console.log(repoInfo);
+    const fetchLanguages = await fetch(`https://api.github.com/repos/${username}/${repoName}/languages`);
     const languageData = await fetchLanguages.json();
-    console.log(languageData);
+    //console.log(languageData);
+    const languages = [];
+    for (let language in languageData) {
+        languages.push(language);
+    }
+    console.log(languages);
 
 };
