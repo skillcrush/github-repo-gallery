@@ -144,7 +144,7 @@ ul {
     margin-top: 1em;
     padding: 1em;
     margin-bottom: 1em;
-    border: 2px solid #483978;
+    border: 2px solid #028090;
 }
 
 section.repo-data {
@@ -209,8 +209,8 @@ section.repo-data {
     margin-top: 2em;
     cursor: pointer;
     display: block;
-    background-color: #483978;
-    border: 1px solid #483978;
+    background-color: #028090;
+    border: 1px solid #028090;
 }
 
 .repo-data .visit:hover {

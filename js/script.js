@@ -84,7 +84,7 @@ const repoList = repoListElement.addEventListener("click", function(e){ //can yo
 const fetchSingleRepoData = async function (repoName){ //why can we call for this parameter? it's only defined inside that if statement.  So...probably this function will also get called inside the if statement? Update: Yep, that's what happened.
     const response = await fetch(`https://api.github.com/repos/${username}/${repoName}`);
     const repoInfo = await response.json();
-    console.log(repoInfo);
+    //console.log(repoInfo);
     const fetchLanguages = await fetch(`https://api.github.com/repos/${username}/${repoName}/languages`);
     const languageData = await fetchLanguages.json();
     //console.log(languageData);
@@ -92,7 +92,7 @@ const fetchSingleRepoData = async function (repoName){ //why can we call for thi
     for (let language in languageData) {
         languages.push(language);
     }
-    console.log(languages);
+    //console.log(languages);
     displaySingleRepoInfo(repoInfo, languages);
 };
 
