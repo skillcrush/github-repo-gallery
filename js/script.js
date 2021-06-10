@@ -48,11 +48,11 @@ const fetchRepos = async function (){
     const response = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=100`);
     const repos = await response.json();
     //console.log(repos);
-    displayRepoInfo(repos);
+    displayReposList(repos);
     
 };
 
-const displayRepoInfo = function (repos){ //not sure about this parameter
+const displayReposList = function (repos){ //not sure about this parameter
     for (const repo of repos) { // or this const
         const li = document.createElement("li");
         li.classList.add("repo");
@@ -67,15 +67,15 @@ fetchRepos();
 const repoList = repoListElement.addEventListener("click", function(e){ //can you name an event listener?
     if (e.target.matches("h3")) {
         const repoName = e.target.innerText; //shouldn't reuse variable names
-        fetchRepoData(repoName);
+        fetchSingleRepoData(repoName);
     }
 
 });
 
-const fetchRepoData = async function (repoName){ //why can we call for this? it's only defined inside that if statement.  So...probably this function will also get called inside the if statement?
+const fetchSingleRepoData = async function (repoName){ //why can we call for this? it's only defined inside that if statement.  So...probably this function will also get called inside the if statement?
     const response = await fetch(`https://api.github.com/repos/${username}/${repoName}`);
     const repoInfo = await response.json();
-    //console.log(repoInfo);
+    console.log(repoInfo);
     const fetchLanguages = await fetch(`https://api.github.com/repos/${username}/${repoName}/languages`);
     const languageData = await fetchLanguages.json();
     //console.log(languageData);
@@ -84,5 +84,25 @@ const fetchRepoData = async function (repoName){ //why can we call for this? it'
         languages.push(language);
     }
     console.log(languages);
+    displaySingleRepoInfo(repoInfo, languages);
+};
 
+
+const displaySingleRepoInfo = function (repoName, languages){
+    repoDataElement.innerHTML = "";
+    const singleRepoDiv = document.createElement("div"); 
+    const name = repoName.name;
+    const description = repoName.description;
+    const defaultBranch = repoName.default_branch;
+    const htmlUrl = repoName.html_url;
+    singleRepoDiv.innerHTML = `
+        <h3>Name: ${name}</h3>
+        <p>Description: ${description}</p>
+        <p>Default Branch: ${defaultBranch}</p>
+        <p>Languages: ${languages.join(", ")}</p>
+        <a class="visit" href="${htmlUrl}" target="_blank" rel="noreferrer noopener">View Repo on GitHub!</a>
+    `;
+    repoDataElement.append(singleRepoDiv);
+    repoDataElement.classList.remove("hide");
+    allReposElement.classList.add("hide");
 };
