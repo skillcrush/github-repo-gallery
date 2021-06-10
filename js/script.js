@@ -7,6 +7,10 @@ const repoListElement = document.querySelector(".repo-list");
 const allReposElement = document.querySelector(".repos");
 //section for individual repo data; initally hidden
 const repoDataElement = document.querySelector(".repo-data");
+//button to return to full repo gallery
+const viewReposButton = document.querySelector(".view-repos");
+const filterInput = document.querySelector(".filter-repos");
+
 
 
 //async to fetch GitHub API data
@@ -105,4 +109,11 @@ const displaySingleRepoInfo = function (repoName, languages){
     repoDataElement.append(singleRepoDiv);
     repoDataElement.classList.remove("hide");
     allReposElement.classList.add("hide");
+    viewReposButton.classList.remove("hide");
 };
+
+viewReposButton.addEventListener("click", function(){
+    repoDataElement.classList.add("hide");
+    allReposElement.classList.remove("hide");
+    viewReposButton.classList.add("hide");
+});
