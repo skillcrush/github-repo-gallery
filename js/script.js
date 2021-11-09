@@ -59,6 +59,7 @@ const displayRepoInfo = function (repos){
     }
 };
 
+//even listener for clicking on repo list
 repoList.addEventListener("click", function(e){
     if (e.target.matches ("h3")){
         const repoName = e.target.innerText;
