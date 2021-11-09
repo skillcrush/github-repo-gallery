@@ -47,6 +47,7 @@ const getRepos = async function (){
 };
 getRepos(); 
 
+//function to display repo names in a list
 const displayRepoInfo = function (repos){
     for (const repo of repos){
         const li=document.createElement("li");
