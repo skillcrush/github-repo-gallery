@@ -40,11 +40,20 @@ const displayUserInfo = function (data){
 
 //async function to fetch my github repos
 const getRepos = async function (){
-    const repoRequest = await fetch (`https://api.github.com/users/${username}/repos?direction"asc&per_page=100`);
-    const repoData = await repoRequest.json();
-    console.log(repoData);
+    const repoRequest = await fetch (`https://api.github.com/users/${username}/repos?sort=updated&per_page=100`);
+    const repos = await repoRequest.json();
+    console.log(repos);
+    displayRepoInfo(repos);
 };
 getRepos(); 
 
+const displayRepoInfo = function (repos){
+    for (const repo of repos){
+        const li=document.createElement("li");
+        li.innerHTML = `<h3>${repo.name} </h3>`;
+        li.classList.add("repo");
+        repoList.append(li);
+    }
+};
 
     
