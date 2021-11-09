@@ -1,7 +1,8 @@
-//targets the DIV where profile info will appear
-const profileInfo = document.querySelector(".overview");
+const profileInfo = document.querySelector(".overview")
 const repoList = document.querySelector(".repo-list");
 const username = "lauramarkus";
+const repoSection = document.querySelector(".repos");
+const repoDetails = document.querySelector(".repo-data");
 
 
 //async function to fetch info from github profile
@@ -15,6 +16,7 @@ const getInfo = async function(){
 };
 getInfo();
 
+//function to specify info to use
 const displayUserInfo = function (data){
     const avatar = data.avatar_url;
     const myname = data.name;
@@ -22,7 +24,7 @@ const displayUserInfo = function (data){
     const location = data.location;
     const numRepos = data.public_repos;
 
-
+//creates a div for displaying user info
     const infoDiv = document.createElement("div");
         infoDiv.classList.add("user-info");
         infoDiv.innerHTML= `
@@ -38,7 +40,7 @@ const displayUserInfo = function (data){
         profileInfo.append(infoDiv);
 };
 
-//async function to fetch my github repos
+//async function to fetch github repos
 const getRepos = async function (){
     const repoRequest = await fetch (`https://api.github.com/users/${username}/repos?sort=updated&per_page=100`);
     const repos = await repoRequest.json();
@@ -57,4 +59,11 @@ const displayRepoInfo = function (repos){
     }
 };
 
-    
+repoList.addEventListener("click", function(e){
+    if (e.target.matches ("h3")){
+        const repoName = e.target.innerText;
+        console.log(repoName);
+        }
+        
+});
+
