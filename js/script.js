@@ -40,13 +40,13 @@ const displayRepos = function (repos) {
   for (const repo of repos) {
     const repoItem = document.createElement("li");
     repoItem.classList.add("repo");
-    repoItem.innerHTML = `<h3>${repo.name}</h3>`;
+    repoItem.innerHTML = `<h2>${repo.name}</h2>`;
     repoList.append(repoItem);
   }
 };
 
 repoList.addEventListener("click", function (e) {
-  if (e.target.matches("h3")) {
+  if (e.target.matches("h2")) {
     const repoName = e.target.innerText;
     getRepoInfo(repoName);
   }
@@ -75,7 +75,7 @@ const displayRepoInfo = function (repoInfo, languages) {
   allReposContainer.classList.add("hide");
   const div = document.createElement("div");
   div.innerHTML = `
-    <h3>Name: ${repoInfo.name}</h3>
+    <h2>Name: ${repoInfo.name}</h2>
     <p>Description: ${repoInfo.description}</p>
     <p>Default Branch: ${repoInfo.default_branch}</p>
     <p>Languages: ${languages.join(", ")}</p>
