@@ -1,6 +1,5 @@
-const overview = document.querySelector(".overview");
+const userData = document.querySelector(".user-data");
 const username = "redrambles";
-const repoList = document.querySelector(".repo-list");
 
 const gitUserInfo = async function () {
   const userInfo = await fetch(`https://api.github.com/users/${username}`);
@@ -24,7 +23,7 @@ const displayUserInfo = function (data) {
       <p><strong>Number of public repos:</strong> ${data.public_repos}</p>
     </div>
   `;
-  overview.append(div);
+  userData.append(div);
   gitRepos();
 };
 
