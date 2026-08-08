@@ -18,15 +18,17 @@
 
 <body>
   <main class="container">
-    <div class="badge">
+    <div class="badge" aria-hidden="true">
       <div class="circle"></div>
     </div>
-    <h1><i class="fab fa-github-alt"></i> GitHub Repo Gallery</h1>
-    <section class="intro">
-      <div class="overview"></div>
+    <h1><i class="fab fa-github-alt" aria-hidden="true"></i> GitHub Repo Gallery</h1>
+    <section class="user">
+      <h2 class="visually-hidden">User Profile</h2>
+      <div class="user-data"></div>
     </section>
 
     <section class="repos">
+      <h2 class="visually-hidden">Repositories</h2>
       <label for="search">Search by name:
         <input type="text" class="filter-repos hide" placeholder="github-repo-gallery" id="search" />
       </label>
