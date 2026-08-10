@@ -1,4 +1,4 @@
-const overview = document.querySelector(".overview");
+const userData = document.querySelector(".user-data");
 const username = "redrambles";
 const repoList = document.querySelector(".repo-list");
 const allReposContainer = document.querySelector(".repos");
@@ -28,7 +28,7 @@ const displayUserInfo = function (data) {
       <p><strong>Number of public repos:</strong> ${data.public_repos}</p>
     </div>
   `;
-  overview.append(div);
+  userData.append(div);
   gitRepos(username);
 };
 
