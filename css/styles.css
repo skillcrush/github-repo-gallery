@@ -210,7 +210,6 @@ section.repo-data {
   width: 90%;
   margin: 1em 0;
   border: 1px solid #F7614A;
-  border-radius: 15px;
   padding: 0.5em;
 }
 
@@ -228,7 +227,7 @@ section.repo-data {
   font-size: 1.125em;
   font-weight: bold;
   margin: 0;
-  padding: 10px;
+  padding: 8px;
   text-align: left;
   width: 100%;
 }
