@@ -117,13 +117,6 @@ h1 {
   margin-right: 8px;
 }
 
-h2 {
-  width: 100%;
-  text-align: center;
-  font-size: 20px;
-  color: #F7614A;
-}
-
 ul {
   list-style: none;
   padding: 0;
@@ -150,7 +143,7 @@ ul {
   justify-content: center;
   background-color: #483978;
   color: white;
-  font-size: 18px;
+  font-size: 1.125em;
   padding-bottom: 2em;
 }
 
@@ -226,14 +219,21 @@ section.repo-data {
   cursor: pointer;
 }
 
-.repo-list h2 {
-  text-align: left;
+.repo-list .repo-name {
+  background: none;
+  border: none;
+  color: #F7614A;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1.125em;
+  font-weight: bold;
   margin: 0;
   padding: 10px;
+  text-align: left;
+  width: 100%;
 }
 
-.repo-list h2:hover {
-  cursor: pointer;
+.repo-list .repo-list:hover {
   text-decoration: underline;
 }
 
