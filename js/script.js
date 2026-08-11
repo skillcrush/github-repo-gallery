@@ -46,7 +46,7 @@ const displayRepos = function (repos) {
 };
 
 repoList.addEventListener("click", function (e) {
-  if (e.target.matches("h2")) {
+  if (e.target.matches(".repo-name")) {
     const repoName = e.target.innerText;
     getRepoInfo(repoName);
   }
@@ -75,7 +75,7 @@ const displayRepoInfo = function (repoInfo, languages) {
   allReposContainer.classList.add("hide");
   const div = document.createElement("div");
   div.innerHTML = `
-    <h2>Name: ${repoInfo.name}</h2>
+    <h3>Name: ${repoInfo.name}</h3>
     <p>Description: ${repoInfo.description}</p>
     <p>Default Branch: ${repoInfo.default_branch}</p>
     <p>Languages: ${languages.join(", ")}</p>
