@@ -78,6 +78,7 @@ const displayRepoInfo = function (repoInfo, languages) {
   repoData.classList.remove("hide");
   allReposContainer.classList.add("hide");
   const div = document.createElement("div");
+  div.classList.add("repo-info");
   div.innerHTML = `
     <h2>Name: ${repoInfo.name}</h2>
     <p>Description: ${repoInfo.description}</p>
