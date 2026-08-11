@@ -29,10 +29,10 @@ const displayUserInfo = function (data) {
     </div>
   `;
   userData.append(div);
-  gitRepos(username);
+  gitRepos();
 };
 
-const gitRepos = async function (username) {
+const gitRepos = async function () {
   const fetchRepos = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=100`);
   const repoData = await fetchRepos.json();
   displayRepos(repoData);
@@ -43,13 +43,13 @@ const displayRepos = function (repos) {
   for (const repo of repos) {
     const repoItem = document.createElement("li");
     repoItem.classList.add("repo");
-    repoItem.innerHTML = `<h2>${repo.name}</h2>`;
+    repoItem.innerHTML = `<button type="button" class="repo-name">${repo.name}</button>`;
     repoList.append(repoItem);
   }
 };
 
 repoList.addEventListener("click", function (e) {
-  if (e.target.matches("h2")) {
+  if (e.target.matches(".repo-name")) {
     const repoName = e.target.innerText;
     getRepoInfo(repoName);
   }
@@ -80,7 +80,7 @@ const displayRepoInfo = function (repoInfo, languages) {
   const div = document.createElement("div");
   div.classList.add("repo-info");
   div.innerHTML = `
-    <h2>Name: ${repoInfo.name}</h2>
+    <h3>Name: ${repoInfo.name}</h3>
     <p>Description: ${repoInfo.description}</p>
     <p>Default Branch: ${repoInfo.default_branch}</p>
     <p>Languages: ${languages.join(", ")}</p>
