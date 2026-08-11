@@ -253,10 +253,6 @@ section.repo-data {
   width: 100%;
 }
 
-.repo-data h2 {
-  text-align: left;
-}
-
 .repo-data .visit {
   text-decoration: none;
   max-width: 200px;
