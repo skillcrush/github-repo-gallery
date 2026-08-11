@@ -89,6 +89,14 @@ h1 {
   border-top-right-radius: 20px;
 }
 
+h3 {
+  color: #F7614A;
+  font-size: 20px;
+  margin: 0;
+  text-align: left;
+  width: 100%;
+}
+
 .badge {
   height: 80px;
   width: 50px;
