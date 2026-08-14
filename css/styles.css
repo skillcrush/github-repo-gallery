@@ -222,8 +222,7 @@ section.repo-data {
 }
 
 .repo-list li:hover {
-  border: 1px solid #f12505;
-  cursor: pointer;
+  box-shadow: 0 0 0 3px #F7614A;
 }
 
 .repo-list .repo-name {
@@ -238,10 +237,6 @@ section.repo-data {
   padding: 8px;
   text-align: left;
   width: 100%;
-}
-
-.repo-list .repo-list:hover {
-  text-decoration: underline;
 }
 
 .repo-list p {
