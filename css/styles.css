@@ -191,6 +191,11 @@ ul {
   border: 2px solid #483978;
 }
 
+.filter-repos:focus {
+  box-shadow: 0 0 0 3px #483978;
+  outline: none; /* replacing the default outline with box shadow */
+}
+
 section.repo-data {
   background-color: #fff;
   padding: 2em;
