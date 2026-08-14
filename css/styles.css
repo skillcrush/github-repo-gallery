@@ -92,7 +92,7 @@ h1 {
 
 h3 {
   color: #F7614A;
-  font-size: 20px;
+  font-size: 1.25em;
   margin: 0;
   text-align: left;
   width: 100%;
@@ -236,7 +236,7 @@ section.repo-data {
   color: #F7614A;
   cursor: pointer;
   font-family: inherit;
-  font-size: 1.125em;
+  font-size: 1.25em;
   font-weight: bold;
   margin: 0;
   padding: 8px;
