@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+html {
+  font-size: 1rem;
+}
+
 body {
   display: flex;
   align-items: center;
@@ -10,7 +14,7 @@ body {
   font-family: "Open Sans", sans-serif;
   background-color: #fbf9de;
   color: #333;
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 .hide {
@@ -80,7 +84,7 @@ h1 {
   width: 100%;
   padding: 1em 0.5em;
   margin: 0;
-  font-size: 3.5em;
+  font-size: 3.5rem;
   text-align: center;
   font-family: "Oswald", sans-serif;
   background-color: #483978;
@@ -92,7 +96,7 @@ h1 {
 
 h3 {
   color: #F7614A;
-  font-size: 20px;
+  font-size: 1.25rem;
   margin: 0;
   text-align: left;
   width: 100%;
@@ -191,6 +195,11 @@ ul {
   border: 2px solid #483978;
 }
 
+.filter-repos:focus {
+  box-shadow: 0 0 0 3px #483978;
+  outline: none; /* replacing the default outline with box shadow */
+}
+
 section.repo-data {
   background-color: #fff;
   padding: 2em;
@@ -231,7 +240,7 @@ section.repo-data {
   color: #F7614A;
   cursor: pointer;
   font-family: inherit;
-  font-size: 1.125em;
+  font-size: 1.25rem;
   font-weight: bold;
   margin: 0;
   padding: 8px;
