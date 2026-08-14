@@ -24,18 +24,57 @@
     <h1><i class="fab fa-github-alt" aria-hidden="true"></i> GitHub Repo Gallery</h1>
     <section class="user">
       <h2 class="visually-hidden">User Profile</h2>
-      <div class="user-data"></div>
+      <div class="user-data">
+        <div class="user-info">
+          <figure>
+            <img alt="user avatar" src="img/tauri-stclaire-avatar.jpg" />
+          </figure>
+          <div>
+            <p><strong>Name:</strong> Tauri StClaire</p>
+            <p><strong>Bio:</strong> Hello! I am a responsive coder who loves Javascript React! HTML5 CSS3 FTP Web Hosting Git Version Control JSX ES6</p>
+            <p><strong>Location:</strong> San Diego, California</p>
+            <p><strong>Number of public repos:</strong> 118</p>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section class="repos">
       <h2 class="visually-hidden">Repositories</h2>
       <label for="search" class="visually-hidden">Search by name:</label>
-        <input type="text" class="filter-repos hide" placeholder="github-repo-gallery" id="search" />
-      <ul class="repo-list"></ul>
+        <input type="text" class="filter-repos" placeholder="Search by name" id="search" />
+      <ul class="repo-list">
+        <li class="repo">
+          <button type="button" class="repo-name">gen-ai-recipe-chatbot</button>
+        </li>
+        <li class="repo">
+          <button type="button" class="repo-name">105-turn_back_time-2</button>
+        </li>
+        <li class="repo">
+          <button type="button" class="repo-name">wordpress-nutrition-blog</button>
+        </li>
+        <li class="repo">
+          <button type="button" class="repo-name">national-park-tour-planner</button>
+        </li>
+        <li class="repo">
+          <button type="button" class="repo-name">study-buddy-with-ui</button>
+        </li>
+        <li class="repo">
+          <button type="button" class="repo-name">study-buddy</button>
+        </li>
+      </ul>
     </section>
-    <section class="repo-data hide"></section>
+    <section class="repo-data">
+      <div class="repo-info">
+        <h3>Name: gen-ai-recipe-chatbot</h3>
+        <p>Description: ChefBoost Gen AI app made with LangChain, Supabase, and pgvector</p>
+        <p>Default Branch: main</p>
+        <p>Languages: Python, JavaScript, CSS, HTML, PLpgSQL</p>
+        <a class="visit" href="${repoInfo.html_url}" target="_blank" rel="noreferrer noopener">View Repo on GitHub!</a>
+      </div>
+    </section>
     <div class="button-container">
-      <button class="view-repos hide">Back to Repo Gallery</button>
+      <button class="view-repos">Back to Repo Gallery</button>
     </div>
   </main>
 </body>
