@@ -196,8 +196,7 @@ ul {
 }
 
 .filter-repos:focus {
-  box-shadow: 0 0 0 3px #483978;
-  outline: none; /* replacing the default outline with box shadow */
+  outline: 3px solid #483978;
 }
 
 section.repo-data {
@@ -231,7 +230,6 @@ section.repo-data {
 }
 
 .repo-list li:hover {
-  /*box-shadow: 0 0 0 3px #F7614A;*/
   background-color: #F7614A;
 }
 
@@ -249,13 +247,8 @@ section.repo-data {
   width: 100%;
 }
 
-.repo-list .repo-name:hover {
-  color: white;
-}
-
-.repo-list p {
-  padding: 0em 0.5em;
-  margin: 0.5em 0;
+.repo .repo-name:hover {
+  color: #fff;
 }
 
 .repo-data {
