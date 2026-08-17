@@ -196,8 +196,7 @@ ul {
 }
 
 .filter-repos:focus {
-  box-shadow: 0 0 0 3px #483978;
-  outline: none; /* replacing the default outline with box shadow */
+  outline: 3px solid #483978;
 }
 
 section.repo-data {
@@ -227,11 +226,11 @@ section.repo-data {
   width: 90%;
   margin: 1em 0;
   border: 1px solid #F7614A;
-  padding: 0.5em;
 }
 
-.repo-list li:hover {
-  box-shadow: 0 0 0 3px #F7614A;
+.repo-list .repo-name:hover {
+  background-color: #F7614A;
+  color: #fff;
 }
 
 .repo-list .repo-name {
@@ -243,14 +242,14 @@ section.repo-data {
   font-size: 1.25rem;
   font-weight: bold;
   margin: 0;
-  padding: 8px;
+  padding: 16px;
   text-align: left;
   width: 100%;
 }
 
-.repo-list p {
-  padding: 0em 0.5em;
-  margin: 0.5em 0;
+.repo-list .repo-name:hover {
+  background-color: #F7614A;
+  color: #fff;
 }
 
 .repo-data {
