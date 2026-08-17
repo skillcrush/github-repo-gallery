@@ -228,11 +228,6 @@ section.repo-data {
   border: 1px solid #F7614A;
 }
 
-.repo-list .repo-name:hover {
-  background-color: #F7614A;
-  color: #fff;
-}
-
 .repo-list .repo-name {
   background: none;
   border: none;
