@@ -42,7 +42,7 @@
     <section class="repos">
       <h2 class="visually-hidden">Repositories</h2>
       <div class="search-container">
-        <i class="fas fa-search"></i>
+        <i class="fas fa-search" aria-hidden="true"></i>
         <label for="search" class="visually-hidden">Search by name:</label>
         <input type="text" class="filter-repos" placeholder="github-repo-gallery" id="search" />
       </div>
@@ -67,7 +67,7 @@
         </li>
       </ul>
     </section>
-    <section class="repo-data">
+    <section class="repo-data hide">
       <div class="repo-info">
         <h3>Name: gen-ai-recipe-chatbot</h3>
         <p>Description: ChefBoost Gen AI app made with LangChain, Supabase, and pgvector</p>
@@ -75,10 +75,10 @@
         <p>Languages: Python, JavaScript, CSS, HTML, PLpgSQL</p>
         <a class="visit" href="https://github.com/tauri-st/gen-ai-recipe-chatbot" target="_blank" rel="noreferrer noopener">View Repo on GitHub!</a>
       </div>
+      <div class="button-container">
+        <button class="view-repos">Back to Repo Gallery</button>
+      </div>
     </section>
-    <div class="button-container">
-      <button class="view-repos">Back to Repo Gallery</button>
-    </div>
   </main>
 </body>
 
