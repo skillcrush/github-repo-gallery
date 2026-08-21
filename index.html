@@ -18,7 +18,7 @@
 
 <body>
   <main class="container">
-    <div class="badge" aria-hidden="true">
+    <div class="badge">
       <div class="circle"></div>
     </div>
     <h1><i class="fab fa-github-alt" aria-hidden="true"></i> GitHub Repo Gallery</h1>
@@ -29,8 +29,11 @@
 
     <section class="repos">
       <h2 class="visually-hidden">Repositories</h2>
-      <label for="search" class="visually-hidden">Search by name:</label>
-        <input type="text" class="filter-repos hide" placeholder="Search by name" id="search" />
+      <div class="search-container hide">
+        <i class="fas fa-search"></i>
+        <label for="search" class="visually-hidden">Search by name:</label>
+        <input type="text" class="filter-repos" placeholder="Search by name" id="search" />
+      </div>
       <ul class="repo-list"></ul>
     </section>
     <section class="repo-data hide"></section>

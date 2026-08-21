@@ -186,6 +186,17 @@ ul {
   padding-bottom: 19px;
 }
 
+.search-container {
+  display: flex;
+  align-items: center;
+}
+
+.fa-search {
+  font-size: 1.5rem;
+  color: #483978;
+  margin-right: .5em;
+}
+
 .filter-repos {
   width: 300px;
   height: 50px;
